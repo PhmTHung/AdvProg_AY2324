@@ -92,6 +92,7 @@ bool checkContinuePlaying(char isContinued) {
     {
         result = true;
     }
+    else if(isContinued=='N') result = false;
     return result;
 }
 
