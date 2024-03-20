@@ -117,7 +117,7 @@ void updateSecretWord(string& secretWord, const char ch, const string& word)
     {
         if(word[i]==ch)
         {
-            secretWord=ch;
+            secretWord[i]=ch;
         }
     }
 }
