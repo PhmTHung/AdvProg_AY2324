@@ -182,7 +182,7 @@ bool isWholeWord(const string& mask)
     //Write your code here
     for(char c:mask)
     {
-        if(!isalpha(c) || c=='-') answer=false;
+        if(c<'a' || c>'z') answer=false;
         return answer;
     }
     return answer;
