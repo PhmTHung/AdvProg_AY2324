@@ -54,7 +54,6 @@ char nextCharWhenWordIsNotInDictionary(const set<char>& selectedChars)
         if(selectedChars.find(c)==selectedChars.end())
         {
             answer=c;
-            selectedChars.insert(c);
         }
     }
     return answer;
