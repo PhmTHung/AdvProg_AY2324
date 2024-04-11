@@ -74,7 +74,7 @@ map<char, int> countOccurrences(const vector<string>& candidateWords)
     {
         for(char c:x)
         {
-            mp[c]++;
+            answer[c]++;
         }
     }
     return answer;
