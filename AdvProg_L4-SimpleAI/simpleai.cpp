@@ -117,7 +117,10 @@ char findBestChar(const vector<string>& candidateWords, const set<char>& selecte
     char answer;
     //Write your code here
     char x=findMostFrequentChar(countOccurrences(candidateWords),selectedChars);
-    answer=x;
+    if(selectedChars.find(x)==selectedChars.end())
+    {
+        answer=x;
+    }
     return answer;
 }
 
