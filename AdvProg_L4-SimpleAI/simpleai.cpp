@@ -178,14 +178,13 @@ bool isCorrectChar(char ch, const string& mask)
 ***/
 bool isWholeWord(const string& mask)
 {
-     bool answer;
+     bool answer=true;
     //Write your code here
     for(char c:mask)
     {
         if(!isalpha(c) && c=='_') answer=false;
         return answer;
     }
-    answer=true;
     return answer;
 }
 
