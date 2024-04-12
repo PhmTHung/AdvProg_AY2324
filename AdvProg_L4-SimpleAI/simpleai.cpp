@@ -162,7 +162,7 @@ bool isCorrectChar(char ch, const string& mask)
     //Write your code here
     for(char x:mask)
     {
-        if(x!='-'&&x!=ch) return false=false;
+        if(x!='-'&&x!=ch) return false;
     }
     return answer;
 }
