@@ -158,11 +158,11 @@ string getWordMask(char nextChar)
 
 bool isCorrectChar(char ch, const string& mask)
 {
-    bool answer=true;
+    bool answer=false;
     //Write your code here
     for(char x:mask)
     {
-        if(x!='-'&&x!=ch) return false;
+        if(x==ch || x=='_') return true;
     }
     return answer;
 }
