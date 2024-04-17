@@ -68,9 +68,9 @@ void Painter::turnRight(double degree)
 {
     // TODO: rotate right the painter
     angle -= degree;
-    if(angle<0)
+    if(angle>360)
     {
-        angle+=360;
+        angle-=360;
     }
 
 }
