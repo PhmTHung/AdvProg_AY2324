@@ -14,7 +14,7 @@ int readWordLen()
     cout << endl << "Enter the number characters of your secret word: ";
     cin >> wordLen;
     return wordLen;
-    
+
 }
 
 /***
@@ -28,6 +28,13 @@ vector<string> filterWordsByLen(int wordLen, const vector<string>& vocabulary)
 {
     vector<string> answer;
     //Write your code here
+    for(const string& x:vocabulary)
+    {
+        if(x.length()==wordLen)
+        {
+            answer.push_back(x);
+        }
+    }
     return answer;
 }
 
@@ -42,12 +49,19 @@ char nextCharWhenWordIsNotInDictionary(const set<char>& selectedChars)
 {
     char answer;
     //Write your code here
+    for(char c='a';c<='z';c++)
+    {
+        if(selectedChars.find(c)==selectedChars.end())
+        {
+            answer=c;
+        }
+    }
     return answer;
 }
 
 /***
     Args:
-        candidateWords (vector<string>): The candidate words for the current given string 
+        candidateWords (vector<string>): The candidate words for the current given string
     Returns:
         answer (map) : The map which count the occurences of character in the set of candidate words
 ***/
@@ -56,6 +70,13 @@ map<char, int> countOccurrences(const vector<string>& candidateWords)
 {
     map<char, int> answer;
     //Write your code here
+    for(const string& x:candidateWords)
+    {
+        for(char c:x)
+        {
+            answer[c]++;
+        }
+    }
     return answer;
 }
 
@@ -71,12 +92,21 @@ char findMostFrequentChar(const map<char, int>& occurrences, const set<char>& se
 {
     char answer;
     //Write your code here
+    int best_count=0;
+    for(auto x:occurrences)
+    {
+        if(x.second>best_count)
+        {
+            answer=x.first;
+            best_count=x.second;
+        }
+    }
     return answer;
 }
 
 /***
     Args:
-        candidateWords (vector<string>): The candidate words for the current given string 
+        candidateWords (vector<string>): The candidate words for the current given string
         selectedChars (set<char>): The predicted characters
     Returns:
         answer (char) : The most suitable character for prediction
@@ -86,6 +116,26 @@ char findBestChar(const vector<string>& candidateWords, const set<char>& selecte
 {
     char answer;
     //Write your code here
+    map<char,int> mp;
+    for(string x:candidateWords)
+    {
+        for(char c:x)
+        {
+            if(selectedChars.find(c)==selectedChars.end())
+            {
+                mp[c]++;
+            }
+        }
+    }
+    int max_count=0;
+    for(auto x:mp)
+    {
+        if(x.second>max_count)
+        {
+            answer=x.first;
+            max_count=x.second;
+        }
+    }
     return answer;
 }
 
@@ -108,8 +158,12 @@ string getWordMask(char nextChar)
 
 bool isCorrectChar(char ch, const string& mask)
 {
-    bool answer;
+    bool answer=false;
     //Write your code here
+    for(char x:mask)
+    {
+        if(x==ch || x=='_') return true;
+    }
     return answer;
 }
 
@@ -123,8 +177,12 @@ bool isCorrectChar(char ch, const string& mask)
 ***/
 bool isWholeWord(const string& mask)
 {
-     bool answer;
+     bool answer=true;
     //Write your code here
+    for(char c:mask)
+    {
+        if(c<'a' || c>'z') return false;
+    }
     return answer;
 }
 
@@ -140,10 +198,16 @@ bool isWholeWord(const string& mask)
                  - True: mask(-ood), char 'd'  vs word(good)
 
 ***/
-bool wordConformToMask(const string& word, const string& mask, char ch) 
+bool wordConformToMask(const string& word, const string& mask, char ch)
 {
     bool answer;
     //Write your code here
+    for(int i=0;i<word.length();i++)
+    {
+        if(mask[i]!='_' && mask[i]!= word[i]) answer=false;
+        if(mask[i]=='_' && mask[i]==ch) answer=false;
+    }
+    answer=true;
     return answer;
 }
 
@@ -163,5 +227,12 @@ vector<string> filterWordsByMask(const vector<string>& words, const string& mask
 {
     vector<string> answer;
     //Write your code here
+    for(const string& word:words)
+    {
+        if(wordConformToMask(word,mask,ch))
+        {
+            answer.push_back(word);
+        }
+    }
     return answer;
 }
