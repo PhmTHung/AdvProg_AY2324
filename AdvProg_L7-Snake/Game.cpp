@@ -66,7 +66,7 @@ void Game::snakeMoveTo(Position pos) {
         }
         else
         {
-            status.growAtFront(pos);
+            status=GAME_RUNNING;
         }
     }
 	// END CODE HERE
