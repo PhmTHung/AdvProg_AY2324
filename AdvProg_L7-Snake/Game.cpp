@@ -120,8 +120,9 @@ bool Game::canChange(Direction current, Direction next) const {
     }
     if((current==LEFT||current==RIGHT)&&(next==LEFT||next==RIGHT))
     {
-           return false;
+        return false;
     }
+    return true;
 }
 
 
