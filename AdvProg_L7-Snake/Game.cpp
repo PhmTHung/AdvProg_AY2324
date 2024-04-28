@@ -66,7 +66,7 @@ void Game::snakeMoveTo(Position pos) {
         }
         else
         {
-            status=GAME_OVER;
+            status.growAtFront(pos);
         }
     }
 	// END CODE HERE
@@ -114,11 +114,11 @@ void Game::processUserInput(Direction direction)
  *
  ***/
 bool Game::canChange(Direction current, Direction next) const {
-	if ((current == UP || current == DOWN)&&(next==UP||next==DOWN)
+	if ((current == UP || current == DOWN)&&(next==UP||next==DOWN))
     {
         return false;
     }
-    if((current==LEFT||current==RIGHT)&&(next==LEFT||next==RIGHT)
+    if((current==LEFT||current==RIGHT)&&(next==LEFT||next==RIGHT))
     {
            return false;
     }
