@@ -53,9 +53,9 @@ void Snake::growAtFront(Position newPosition)
 {
     // head of snake grow at new position
 
-    SnakeNode* newNode=new SnakeNode(newPosition);
-    newNode->next=head->next;
-    head->next=newNode;
+    SnakeNode* newHead=new SnakeNode(newPosition,nullptr);
+    head->next=newHead;
+    head=newHead;
 
 }
 
@@ -95,10 +95,10 @@ void Snake::slideTo(Position newPosition)
         /* YOUR CODE HERE */
 		tail=tail->next;
 		oldTailNode->next=nullptr;
-		oldTailNode->position=newPosition;
-		head->next=oldTailNode;
 		// move it to the head of the snake
         /* YOUR CODE HERE */
+        oldTailNode->position=newPosition;
+		head->next=oldTailNode;
 		head = oldTailNode;
 	}
 }
